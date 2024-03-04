@@ -1,0 +1,1 @@
+sap.ui.controller("hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.blocks.PersInfoBankBlockControllerCustom",{onAfterRendering:function(){$("div[id$='ProfileOverview--bankSubSection']").prop("title","Nur deutsche Bankverbindungen")}});

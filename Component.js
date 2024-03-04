@@ -1,0 +1,1 @@
+jQuery.sap.declare("hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.Component");sap.ui.component.load({name:"hcm.fab.myprofile",url:"/sap/bc/ui5_ui5/sap/HCMFAB_PRFL_MON"});this.hcm.fab.myprofile.Component.extend("hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.Component",{metadata:{manifest:"json"}});

@@ -1,0 +1,86 @@
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "_version": "1.1.0",
+        "id": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension",
+        "type": "application",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "Meine Daten",
+        "i18n": "i18n/i18n.properties"
+    },
+    "sap.ui": {
+        "_version": "1.1.0",
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://personnel-view",
+            "favIcon": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.1.0",
+        "dependencies": {
+            "minUI5Version": "1.44.47"
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.i18n.i18n"
+                }
+            }
+        },
+        "extends": {
+            "component": "hcm.fab.myprofile",
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "hcm.fab.myprofile.blocks.PersInfoBankBlockController": {
+                        "controllerName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.blocks.PersInfoBankBlockControllerCustom"
+                    },
+                    "hcm.fab.myprofile.controller.ProfileOverview": {
+                        "controllerName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.controller.ProfileOverviewCustom"
+                    },
+                    "hcm.fab.myprofile.blocks.PersInfoAddressBlockController": {
+                        "controllerName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.blocks.PersInfoAddressBlockControllerCustom"
+                    }
+                },
+                "sap.ui.viewReplacements": {
+                    "hcm.fab.myprofile.blocks.PersInfoFamilyMembersBlockCollapsed": {
+                        "viewName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.blocks.PersInfoFamilyMembersBlockCollapsedCustom",
+                        "type": "XML"
+                    },
+                    "hcm.fab.myprofile.blocks.PersInfoFamilyMembersBlockExpanded": {
+                        "viewName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.blocks.PersInfoFamilyMembersBlockExpandedCustom",
+                        "type": "XML"
+                    },
+                    "hcm.fab.myprofile.blocks.PersInfoPersonalDataBlock": {
+                        "viewName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.blocks.PersInfoPersonalDataBlockCustom",
+                        "type": "XML"
+                    },
+                    "hcm.fab.myprofile.blocks.PersInfoAddressBlockCollapsed": {
+                        "viewName": "hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.blocks.PersInfoAddressBlockCollapsedCustom",
+                        "type": "XML"
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zmy_profile_ext/webapp",
+        "_version": "1.1.0"
+    }
+}

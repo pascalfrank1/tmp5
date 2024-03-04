@@ -1,0 +1,66 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="hcm.fab.myprofile.blocks.PersInfoFamilyMembersBlockController" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" busy="{FamilyView>/busy}"
+	visible="{= !${appProperties>/isAppBusy}}">
+	<l:Grid id="familyMembersContainer"
+		content="{ path: 'toFamilyMember', parameters: { expand: 'toPersInfoMetaData' }, length: 3, events: { dataRequested: '.onDataRequested', change: '.onChange'}, templateShareable: false }"
+		containerQuery="false" hSpacing="0" defaultSpan="XL3 L4 M6 S12" class="sapUiResponsiveContentPadding"
+		visible="{= ${appEmployeeData>/bPersInfoFamilyMembersExists} &amp;&amp; !${FamilyView>/busy}}">
+		<l:content>
+			<form:SimpleForm id="familyMembersForm" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanXL="-1"
+				emptySpanXL="-1" columnsXL="-1" labelSpanL="4" emptySpanL="3" columnsL="2" labelSpanM="4" emptySpanM="2" columnsM="2" labelSpanS="12"
+				emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false">
+				<form:content>
+					<!-- Subtype -->
+					<core:Title text="{FamilyMemberTypeText}"/>
+					<!-- FormattedName-->
+					<Label
+						text="{parts: [ '/#FamilyMember/FormattedName/@name', 'toPersInfoMetaData', '/#FamilyMember/FormattedName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblFormattedName" labelFor="txtFormattedName"
+						visible="{parts: [ '/#FamilyMember/FormattedName/@name', 'toPersInfoMetaData', 'FormattedName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtFormattedName" text="{FormattedName}"
+						visible="{parts: [ '/#FamilyMember/FormattedName/@name', 'toPersInfoMetaData', 'FormattedName' ], formatter: '.getVisibility'}"/>
+					<!-- FirstName / FAVOR -->
+					<Label
+						text="{parts: [ '/#FamilyMember/FirstName/@name', 'toPersInfoMetaData', '/#FamilyMember/FirstName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblFirstName" labelFor="txtFirstName"
+						visible="{parts: [ '/#FamilyMember/FirstName/@name', 'toPersInfoMetaData', 'FirstName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtFirstName" text="{FirstName}"
+						visible="{parts: [ '/#FamilyMember/FirstName/@name', 'toPersInfoMetaData', 'FirstName' ], formatter: '.getVisibility'}"/>
+					<!-- LastName / FANAM -->
+					<Label
+						text="{parts: [ '/#FamilyMember/LastName/@name', 'toPersInfoMetaData', '/#FamilyMember/LastName/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblLastName" labelFor="txtLastName"
+						visible="{parts: [ '/#FamilyMember/LastName/@name', 'toPersInfoMetaData', 'LastName' ], formatter: '.getVisibility'}"/>
+					<Text id="txtLastName" text="{LastName}"
+						visible="{parts: [ '/#FamilyMember/LastName/@name', 'toPersInfoMetaData', 'LastName' ], formatter: '.getVisibility'}"/>
+					<!-- Date of birth -->
+					<Label
+						text="{parts: [ '/#FamilyMember/DateOfBirth/@name', 'toPersInfoMetaData', '/#FamilyMember/DateOfBirth/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblDateOfBirth" labelFor="txtDateOfBirth"
+						visible="{parts: [ '/#FamilyMember/DateOfBirth/@name', 'toPersInfoMetaData', 'DateOfBirth' ], formatter: '.getVisibility'}"/>
+					<Text id="txtDateOfBirth"
+						text="{ path: 'DateOfBirth', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { UTC: true, style: 'medium', relative: true }, constraints: { displayFormat: 'Date' } }"
+						visible="{parts: [ '/#FamilyMember/DateOfBirth/@name', 'toPersInfoMetaData', 'DateOfBirth' ], formatter: '.getVisibility'}"/>
+					<!-- Gender -->
+					<Label
+						text="{parts: [ '/#FamilyMember/GenderId/@name', 'toPersInfoMetaData', '/#FamilyMember/GenderId/@sap:label'], formatter: '.getPersinfoLabel'}"
+						id="lblGender" labelFor="txtGender"
+						visible="{parts: [ '/#FamilyMember/GenderId/@name', 'toPersInfoMetaData', 'GenderText' ], formatter: '.getVisibility'}"/>
+					<Text id="txtGender" text="{GenderText}"
+						visible="{parts: [ '/#FamilyMember/GenderId/@name', 'toPersInfoMetaData', 'GenderText' ], formatter: '.getVisibility'}"/>
+					<!--Allows you to add additional elements to the family members form-->
+					<core:ExtensionPoint name="extensionFamilyMembersForm"/>
+				</form:content>
+			</form:SimpleForm>
+		</l:content>
+	</l:Grid>
+	<MessageStrip id="noFamilyMemeberStrip" text="{path: 'i18n>noFamilyMembersTxt'}" type="Information" showIcon="true"
+		tooltip="{path: 'i18n>noFamilyMembersTxt'}" visible="{= !${appEmployeeData>/bPersInfoFamilyMembersExists} &amp;&amp; !${FamilyView>/busy}}"/>
+	<Button id="navToFamilyMembersBtn" text="{i18n>navToFamilyMembersBtn}" type="Emphasized" press="onNavToFamilyMembersPress" visible="false"
+		class="sapUiTinyMarginTop"/>
+</mvc:View>

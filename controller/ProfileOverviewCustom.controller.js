@@ -1,0 +1,1 @@
+sap.ui.controller("hcm.fab.myprofile.HCMFAB_PRFL_MONExtension.controller.ProfileOverviewCustom",{onAfterRendering:function(){}});
